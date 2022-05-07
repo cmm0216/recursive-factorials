@@ -3,7 +3,6 @@
 #test file for the recursive-factorials assignment
 import sys
 import re
-import argparse
 from Bio import SeqIO
 from Bio.Seq import translate
 
@@ -11,12 +10,15 @@ from Bio.Seq import translate
 filename = sys.argv[1]
 p = float(sys.argv[2])
 q = 1- p
-file_path = 'results.txt'
 sys.stdout = open(sys.argv[3], "w")
-print("Results\n")
 class attributes:
 
 	def __init__(self,sample_id,date,color, sequence,count):
+		"""
+		Class created to group all of the data structures created in this script. 
+		All variables start with "self", as that is what represents the instance of the class. This allows us 
+		to access these variables. 
+		"""
 		self.id = sample_id
 		self.date = date
 		self.color = color
@@ -90,6 +92,8 @@ def weagle(filename):
     	 n = len(headers)
     	 eq  = ((get_factorial_recur(n))/(get_factorial_recur(n-k)*get_factorial_recur(k)))*(p**k)*(q**(n-k))
 
+#### Writing the results out to the output file, which was generated at the top of the script!
+	print("Results\n")
 	print('p (the frequency of "orange" in the population) = ' + str(p))
 	print('n (the number of sampled individuals) = ' + str(n))
 	print('k (the number of "orange" individuals in the sample set) = ' + str(k))
