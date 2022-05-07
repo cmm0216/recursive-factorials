@@ -1,0 +1,2 @@
+Results
+n (the number of sampled individuals) = 100

@@ -5,8 +5,22 @@ import sys
 import re
 import argparse
 from Bio import SeqIO
+from Bio.Seq import translate
 
-filename = sys.argv[-1]
+
+filename = sys.argv[1]
+
+file_path = 'randomfile.txt'
+sys.stdout = open(file_path, "w")
+print("Results")
+class attributes:
+
+	def __init__(self,sample_id,date,color, sequence,count):
+		self.id = sample_id
+		self.date = date
+		self.color = color
+		self.seq = sequence
+		self.count = headers
 
 def ID(filename):
 	"""
@@ -15,31 +29,36 @@ def ID(filename):
 
 	Input
 	______
+	filename: .fasta file that comes from the command line
+
+	Example output:
+	_______________
+	n (the number of sampled individuals = 100
 
 	"""
 	headers = []
 	with open(filename,'r') as f:
     	 for record in SeqIO.parse(f, "fasta"):
-        	headers.append(record.description)
-	print(headers)
-	n = len(headers)
-	print("n (the number of sampled individuals = " + str(n)) 
+    	 	headers.append(record.description)
 
 
+    	 	#Seperating date and sample id to be cataloged to class attributes.
+    	 	date= re.split(r'_(.+?$)', record.id)
+    	 	sample_id = re.match(r'(^.+?)_', record.id).group(0)
+  
+  			#Getting sequences alone, to be cataloged to class attributes.
+    	 	if filename != re.match('>',filename):
+    	 		sequence = record.seq
+
+    	 #Getting the number of samples "n" needed for the equation.
+    	 n = len(headers)
+
+    	 
 
 
-
-#class attributes():
-#	def ID():
-#		for line in SeqIO.parse("Aubie.fasta", "fasta"):
-#			start = line(r'^>')
-#			return wc -l
-#
-#	def date():
-#		for seq in SeqIO.parse("Aubie.fasta", "fasta"):
-#			str = seq.findall
-#			print(str)
-#
+	print("n (the number of sampled individuals) = " + str(n))
 
 if __name__ == "__main__":
 	ID(filename)
+	#orange(filename)
+
